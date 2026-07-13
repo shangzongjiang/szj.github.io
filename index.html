@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尚宗江 · Zongjiang Shang</title>
+<meta name="description" content="尚宗江 - 浙江大学人工智能博士研究生，研究方向：时序分析、超图神经网络、大语言模型对齐">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F6F1;
+    --paper-card:#FFFFFF;
+    --ink:#182420;
+    --ink-soft:#4B5952;
+    --line:#DEDCCF;
+    --pine:#2F6F5E;
+    --pine-soft:#E7F0EC;
+    --gold:#A9782B;
+    --gold-soft:#F3EADB;
+    --steel:#4C6C8C;
+    --steel-soft:#E7EDF3;
+    --max:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--pine-soft);color:var(--pine);}
+  a{color:var(--pine);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--pine);outline-offset:3px;border-radius:2px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;margin:0;color:var(--ink);}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  nav.topnav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,246,241,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navrow{
+    max-width:var(--max);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .navname{font-family:'Fraunces',serif;font-weight:600;font-size:17px;letter-spacing:0.02em;}
+  .navlinks{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;}
+  .navlinks::-webkit-scrollbar{display:none;}
+  .navlinks a{
+    font-size:14px;color:var(--ink-soft);white-space:nowrap;
+    padding:4px 2px;border-bottom:2px solid transparent;
+  }
+  .navlinks a:hover{color:var(--pine);text-decoration:none;border-bottom-color:var(--pine);}
+
+  /* HERO */
+  header.hero{position:relative;overflow:hidden;padding:76px 0 56px;border-bottom:1px solid var(--line);}
+  .pulse-bg{position:absolute;inset:0;width:100%;height:100%;opacity:0.55;pointer-events:none;}
+  .hero-inner{position:relative;z-index:2;display:flex;gap:40px;align-items:flex-end;flex-wrap:wrap;}
+  .hero-text{flex:1;min-width:280px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--pine);margin-bottom:14px;display:block;
+  }
+  h1.name{font-size:clamp(38px,6vw,58px);line-height:1.05;}
+  .name-en{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:17px;color:var(--ink-soft);margin-top:10px;letter-spacing:0.01em;}
+  .role{margin-top:20px;font-size:17px;color:var(--ink-soft);max-width:520px;}
+  .role b{color:var(--ink);font-weight:600;}
+  .contact-row{margin-top:24px;display:flex;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13.5px;}
+  .contact-row a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;}
+  .contact-row a:hover{border-color:var(--pine);color:var(--pine);text-decoration:none;}
+
+  /* SECTIONS */
+  section{padding:56px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:30px;}
+  .sec-head .idx{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold);}
+  .sec-head h2{font-size:26px;}
+  .lede{color:var(--ink-soft);max-width:640px;margin-bottom:28px;font-size:15.5px;}
+
+  /* TIMELINE (education/experience) */
+  .tl-item{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line);}
+  .tl-item:first-child{border-top:none;}
+  .tl-date{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);padding-top:3px;}
+  .tl-org{font-weight:600;font-size:16.5px;}
+  .tl-sub{color:var(--ink-soft);font-size:14px;margin-top:3px;}
+  .tl-list{margin:10px 0 0;padding-left:18px;color:var(--ink-soft);font-size:14.5px;}
+  .tl-list li{margin-bottom:4px;}
+  @media(max-width:600px){.tl-item{grid-template-columns:1fr;gap:6px;}}
+
+  /* CHIPS */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    background:var(--pine-soft);color:var(--pine);
+    padding:5px 11px;border-radius:20px;
+  }
+
+  /* PUBLICATIONS */
+  .pub-list{list-style:none;margin:0;padding:0;}
+  .pub{
+    border-top:1px solid var(--line);padding:20px 0 20px 18px;
+    border-left:3px solid var(--line);
+  }
+  .pub:first-child{border-top:none;}
+  .pub.tier-a{border-left-color:var(--gold);}
+  .pub.tier-b{border-left-color:var(--steel);}
+  .pub.tier-core{border-left-color:var(--pine);}
+  .pub-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;
+    padding:3px 8px;border-radius:4px;letter-spacing:0.02em;
+  }
+  .tag--a{background:var(--gold-soft);color:var(--gold);}
+  .tag--b{background:var(--steel-soft);color:var(--steel);}
+  .tag--core{background:var(--pine-soft);color:var(--pine);}
+  .pub-venue{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);}
+  .pub-title{font-family:'Inter',sans-serif;font-weight:600;font-size:15.5px;line-height:1.45;color:var(--ink);}
+  .pub-role{font-size:13px;color:var(--ink-soft);margin-top:6px;font-style:italic;}
+  .pub-links{margin-top:8px;display:flex;gap:14px;font-size:13px;}
+
+  /* PATENTS */
+  .patent{padding:16px 0;border-top:1px solid var(--line);font-size:14.5px;}
+  .patent:first-child{border-top:none;}
+  .patent-title{font-weight:600;color:var(--ink);}
+  .patent-meta{color:var(--ink-soft);font-size:13px;margin-top:4px;font-family:'JetBrains Mono',monospace;}
+
+  /* HONORS */
+  .honor-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  @media(max-width:640px){.honor-grid{grid-template-columns:1fr;}}
+  .honor-grid h3{font-size:14px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);font-weight:500;margin-bottom:16px;}
+  .honor-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;}
+  .honor-row:first-of-type{border-top:none;}
+  .honor-row span:last-child{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);white-space:nowrap;}
+
+  /* DIVIDER */
+  .divider{width:100%;height:28px;opacity:0.45;}
+
+  /* FOOTER */
+  footer{padding:40px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer a{color:var(--ink-soft);border-bottom:1px solid var(--line);}
+  footer a:hover{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="navrow">
+    <span class="navname">尚宗江</span>
+    <div class="navlinks">
+      <a href="#about">简介</a>
+      <a href="#education">教育背景</a>
+      <a href="#experience">经历</a>
+      <a href="#publications">论文</a>
+      <a href="#patents">专利</a>
+      <a href="#honors">荣誉</a>
+      <a href="#skills">技能</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="pulse-bg" viewBox="0 0 1200 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,150 C60,80 120,220 180,150 C240,80 300,220 360,150 C420,80 480,220 540,150 C600,80 660,220 720,150 C780,80 840,220 900,150 C960,80 1020,220 1080,150 C1140,80 1170,220 1200,150" fill="none" stroke="#2F6F5E" stroke-width="1.5" opacity="0.35"/>
+    <path d="M0,160 C100,120 200,200 300,160 C400,120 500,200 600,160 C700,120 800,200 900,160 C1000,120 1100,200 1200,160" fill="none" stroke="#A9782B" stroke-width="1.5" opacity="0.3"/>
+    <path d="M0,140 C200,60 400,220 600,140 C800,60 1000,220 1200,140" fill="none" stroke="#4C6C8C" stroke-width="1.5" opacity="0.3"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <span class="eyebrow">Ph.D. Candidate · Zhejiang University</span>
+      <h1 class="name">尚宗江<span class="name-en">Zongjiang Shang</span></h1>
+      <p class="role">浙江大学软件学院人工智能方向博士研究生，师从 <b>陈岭教授</b>。研究方向为<b>时序分析</b>、<b>超图神经网络</b>与<b>大语言模型对齐</b>，致力于用多尺度建模的方式理解现实世界中复杂的时间序列信号。</p>
+      <div class="contact-row">
+        <a href="mailto:zongjiangshang@cs.zju.edu.cn">zongjiangshang@cs.zju.edu.cn</a>
+        <a href="https://github.com/shangzongjiang" target="_blank" rel="noopener">github.com/shangzongjiang</a>
+        <a href="https://shangzongjiang.github.io/github/files/Zongjiang_Shang_CV.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
+      </div>
+      <div class="chips">
+        <span class="chip">时序预测</span>
+        <span class="chip">超图神经网络</span>
+        <span class="chip">Transformer</span>
+        <span class="chip">大语言模型对齐</span>
+        <span class="chip">多模态大模型</span>
+        <span class="chip">智能体</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about">
+    <div class="sec-head"><span class="idx">01</span><h2>简介</h2></div>
+    <p class="lede" style="max-width:100%;">
+      我目前在浙江大学软件学院攻读人工智能方向博士学位，导师为陈岭教授（浙大青年学者、鸿程软件研究院副院长）。
+      我的研究聚焦于时序分析中的多尺度建模问题：如何用超图神经网络刻画变量间的群体交互，
+      以及如何借助大语言模型的知识与推理能力提升时序预测的准确性与泛化性。
+      至今已发表论文 20 余篇，其中 6 篇为 CCF-A 类一作 / 学生一作论文，1 篇 CORE A 类会议论文，
+      并获得 NeurIPS 2024 Scholar Award。日常也承担 ICML、NeurIPS、AAAI、TKDE、KDD 等会议与期刊的审稿工作。
+    </p>
+  </section>
+
+  <section id="education">
+    <div class="sec-head"><span class="idx">02</span><h2>教育背景</h2></div>
+
+    <div class="tl-item">
+      <div class="tl-date">2021.09 – 至今</div>
+      <div>
+        <div class="tl-org">浙江大学 · 软件学院</div>
+        <div class="tl-sub">人工智能 · 博士研究生 &nbsp;|&nbsp; 导师：陈岭教授</div>
+        <div class="tl-sub">研究方向：时序分析、超图神经网络、Transformer、大语言模型对齐、多模态大模型、智能体</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2017.09 – 2020.06</div>
+      <div>
+        <div class="tl-org">西北工业大学 · 电子信息学院</div>
+        <div class="tl-sub">电路与系统 · 硕士研究生 &nbsp;|&nbsp; 导师：吴俊（IEEE Member, ACM Member, CCF Member）</div>
+        <div class="tl-sub">研究方向：医学图像处理</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2013.09 – 2017.06</div>
+      <div>
+        <div class="tl-org">东北林业大学 · 机械工程学院</div>
+        <div class="tl-sub">机械电子工程 · 本科</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><span class="idx">03</span><h2>工作与实习实践</h2></div>
+
+    <div class="tl-item">
+      <div class="tl-date">2022.11 – 2023.11</div>
+      <div>
+        <div class="tl-org">阿里巴巴</div>
+        <div class="tl-sub">阿里巴巴 - AZFT 合作项目</div>
+        <ul class="tl-list">
+          <li>时序预测与异常检测算法研究</li>
+          <li>天猫、盒马等超市实时营业数据的分析与建模</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2020.06 – 2021.06</div>
+      <div>
+        <div class="tl-org">崂山国家实验室</div>
+        <div class="tl-sub">海洋研究所 · 助理工程师</div>
+        <ul class="tl-list">
+          <li>被动水声定位</li>
+          <li>水下目标识别</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2018.06 – 2019.06</div>
+      <div>
+        <div class="tl-org">北京同仁医院</div>
+        <div class="tl-sub">医学图像处理 · 研究型实习</div>
+        <ul class="tl-list">
+          <li>基于眼底影像智能分析与辅助诊断的前瞻性研究</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="sec-head"><span class="idx">04</span><h2>论文</h2></div>
+    <p class="lede">撰写论文 20 余篇，其中 6 篇中稿一作 / 学生一作 CCF-A 类论文，1 篇 CORE A 类。左侧色条标注论文等级：<span style="color:var(--gold);">金色 = CCF-A</span> · <span style="color:var(--steel);">蓝色 = CCF-B</span> · <span style="color:var(--pine);">绿色 = CORE A</span>。</p>
+
+    <ul class="pub-list">
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP会议</span><span class="pub-venue">ICLR 2026</span></div>
+        <div class="pub-title">Multi-scale hypergraph meets LLMs: Aligning large language models for time series analysis</div>
+        <div class="pub-role">一作</div>
+        <div class="pub-links"><a href="https://github.com/shangzongjiang/MSH-LLM" target="_blank" rel="noopener">Github →</a></div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP会议</span><span class="pub-venue">NeurIPS 2024</span></div>
+        <div class="pub-title">Ada-MSHyper: Adaptive multi-scale hypergraph transformer for time series forecasting</div>
+        <div class="pub-role">一作 · NeurIPS 2024 Scholar Award</div>
+        <div class="pub-links">
+          <a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/3a6935d11910d6f9142b0a1e36fc6753-Abstract-Conference.html" target="_blank" rel="noopener">Paper →</a>
+          <a href="https://github.com/shangzongjiang/Ada-MSHyper" target="_blank" rel="noopener">Github →</a>
+        </div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP会议</span><span class="pub-venue">ICML 2026</span></div>
+        <div class="pub-title">TimeMRA: LLM-empowered time series forecasting via multi-scale retrieval-augmented representations</div>
+        <div class="pub-role">一作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP会议</span><span class="pub-venue">AAAI 2026</span></div>
+        <div class="pub-title">TimePMG: LLM-based time series forecasting with period-aware multi-scale decomposition and group-wise alignment</div>
+        <div class="pub-role">一作</div>
+        <div class="pub-links"><a href="https://github.com/shangzongjiang/TimePMG" target="_blank" rel="noopener">Github →</a></div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP会议</span><span class="pub-venue">AAAI 2026</span></div>
+        <div class="pub-title">AirDDE: Multifactor neural delay differential equations for air quality forecasting</div>
+        <div class="pub-role">共同一作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP期刊 · 高被引</span><span class="pub-venue">TKDE 2024</span></div>
+        <div class="pub-title">Multi-scale adaptive graph neural network for multivariate time series forecasting</div>
+        <div class="pub-role">学生一作</div>
+        <div class="pub-links"><a href="https://github.com/shangzongjiang/MAGNN" target="_blank" rel="noopener">Github →</a></div>
+      </li>
+
+      <li class="pub tier-core">
+        <div class="pub-meta"><span class="tag tag--core">CORE A · TOP会议</span><span class="pub-venue">ICME 2019</span></div>
+        <div class="pub-title">Partially occluded head posture estimation for 2D images using pyramid HoG features</div>
+        <div class="pub-role">学生一作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP期刊</span><span class="pub-venue">SCIS · 在投</span></div>
+        <div class="pub-title">D-PAD: Deep-shallow multi-frequency patterns disentangling for time series forecasting</div>
+        <div class="pub-role">一作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A</span><span class="pub-venue">TKDE · 在投</span></div>
+        <div class="pub-title">PMHyper: Period-aware multi-scale hypergraph for time series forecasting</div>
+        <div class="pub-role">一作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A</span><span class="pub-venue">NeurIPS · 在投</span></div>
+        <div class="pub-title">M2TSF: LLM-empowered time series forecasting via multi-stream multi-scale modeling</div>
+        <div class="pub-role">一作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · JCR1区</span><span class="pub-venue">Information Sciences · 大修</span></div>
+        <div class="pub-title">MSHyper: Multi-scale hypergraph transformer for long-range time series forecasting</div>
+        <div class="pub-role">一作</div>
+        <div class="pub-links"><a href="https://github.com/shangzongjiang/MSHyper" target="_blank" rel="noopener">Github →</a></div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP会议</span><span class="pub-venue">ICML 2026</span></div>
+        <div class="pub-title">LagLLM: LLM-empowered lead-lag dependency learning for spatial-temporal time series forecasting</div>
+        <div class="pub-role">三作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A</span><span class="pub-venue">NeurIPS · 在投</span></div>
+        <div class="pub-title">MMRN: A multi-scale multi-task residual network for seasonal climate forecasting</div>
+        <div class="pub-role">二作</div>
+      </li>
+
+      <li class="pub tier-a">
+        <div class="pub-meta"><span class="tag tag--a">CCF-A · TOP会议 · Oral</span><span class="pub-venue">AAAI 2026</span></div>
+        <div class="pub-title">MoCast: Learning turbulent motions under physical guidance for precipitation nowcasting</div>
+        <div class="pub-role">四作</div>
+      </li>
+
+      <li class="pub tier-b">
+        <div class="pub-meta"><span class="tag tag--b">CCF-B · TOP会议</span><span class="pub-venue">CIKM 2025</span></div>
+        <div class="pub-title">ST-Hyper: Learning high-order dependencies across multiple spatial-temporal scales for multivariate time series forecasting</div>
+        <div class="pub-role">三作</div>
+      </li>
+
+      <li class="pub tier-b">
+        <div class="pub-meta"><span class="tag tag--b">CCF-B · TOP期刊</span><span class="pub-venue">Information Science 2025</span></div>
+        <div class="pub-title">TPRNN: A top-down pyramidal recurrent neural network for time series forecasting</div>
+        <div class="pub-role">二作</div>
+      </li>
+
+      <li class="pub tier-b">
+        <div class="pub-meta"><span class="tag tag--b">CCF-B · TOP期刊</span><span class="pub-venue">TKDD · 大修</span></div>
+        <div class="pub-title">DSTCGCN: Learning dynamic spatial-temporal cross dependencies for traffic forecasting</div>
+        <div class="pub-role">二作</div>
+      </li>
+
+      <li class="pub tier-b">
+        <div class="pub-meta"><span class="tag tag--b">CCF-B</span><span class="pub-venue">TKDD 2024</span></div>
+        <div class="pub-title">Scale-aware neural architecture search for multivariate time series forecasting</div>
+        <div class="pub-role">三作</div>
+        <div class="pub-links"><a href="https://github.com/shangzongjiang/SNAS4MTF" target="_blank" rel="noopener">Github →</a></div>
+      </li>
+
+    </ul>
+  </section>
+
+  <section id="patents">
+    <div class="sec-head"><span class="idx">05</span><h2>专利</h2></div>
+
+    <div class="patent">
+      <div class="patent-title">一种基于层次化超图神经网络的电力负载预测方法</div>
+      <div class="patent-meta">发明专利 · 申请号 202310432912.5 · 学生一作 · 已授权</div>
+    </div>
+    <div class="patent">
+      <div class="patent-title">一种基于自适应多尺度超图神经网络的电力负载预测方法</div>
+      <div class="patent-meta">发明专利 · 申请号 202411011366.9 · 学生一作 · 已授权</div>
+    </div>
+    <div class="patent">
+      <div class="patent-title">一种基于多尺度超图神经网络和大语言模型对齐的电力负载预测方法</div>
+      <div class="patent-meta">发明专利 · 申请号 202510546395.3 · 学生一作 · 已授权</div>
+    </div>
+  </section>
+
+  <section id="honors">
+    <div class="sec-head"><span class="idx">06</span><h2>奖励与荣誉</h2></div>
+    <div class="honor-grid">
+      <div>
+        <h3>奖学金</h3>
+        <div class="honor-row"><span>NeurIPS 2024 Scholar Award</span><span>2024–2025</span></div>
+        <div class="honor-row"><span>浙江大学对外交流奖学金</span><span>2023–2024</span></div>
+        <div class="honor-row"><span>浙江大学二等学业奖学金</span><span>2022–2023</span></div>
+        <div class="honor-row"><span>浙江大学一等学业奖学金</span><span>2021–2022</span></div>
+      </div>
+      <div>
+        <h3>其他荣誉</h3>
+        <div class="honor-row"><span>研究生单项荣誉 · 学术创新能力</span><span>2023–2024</span></div>
+        <div class="honor-row"><span>研究生单项荣誉 · 劳育</span><span>2022–2023</span></div>
+        <div class="honor-row"><span>浙江大学五好研究生</span><span>2021–2022</span></div>
+        <div class="honor-row"><span>浙江大学优秀研究生干部</span><span>2021–2022</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="idx">07</span><h2>专业技能</h2></div>
+    <p class="lede" style="max-width:100%;">
+      熟悉图神经网络、超图神经网络、Transformer 的基本理论；掌握大语言模型对齐、多模态大模型、
+      大模型训练与微调相关技术。长期承担 ICML、NeurIPS、AAAI、TKDE、KDD 等顶级期刊与会议的审稿任务。
+    </p>
+    <div class="chips">
+      <span class="chip">Graph Neural Networks</span>
+      <span class="chip">Hypergraph Neural Networks</span>
+      <span class="chip">Transformer</span>
+      <span class="chip">LLM Alignment</span>
+      <span class="chip">Multimodal LLM</span>
+      <span class="chip">LLM Fine-tuning</span>
+      <span class="chip">Peer Review</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head"><span class="idx">08</span><h2>联系方式</h2></div>
+    <p class="lede" style="max-width:100%;">
+      欢迎围绕时序分析、超图神经网络或大语言模型对齐方向交流合作。可通过以下方式联系我：
+    </p>
+    <div class="contact-row" style="margin-top:0;">
+      <a href="mailto:zongjiangshang@cs.zju.edu.cn">zongjiangshang@cs.zju.edu.cn</a>
+      <a href="https://github.com/shangzongjiang" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://shangzongjiang.github.io/github/files/Zongjiang_Shang_CV.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
+    </div>
+    <p class="tl-sub" style="margin-top:20px;">浙江大学 · 玉泉校区 · 曹光彪楼 · 普适计算实验室 616-B 室</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 尚宗江 Zongjiang Shang · 最近更新于 2026 年 7 月</p>
+</footer>
+
+</body>
+</html>
